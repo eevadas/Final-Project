@@ -1,0 +1,37 @@
+{% extends 'base1.html' %}
+{% block content %}
+<div class="col-md-10 pt-2" style="background: #6c757d;">
+	{% for blog in blogs %}
+	<article class="content-section">
+    <img  class="rounded-circle  article-img" src=" {{ blog.author.profile.image.url }} ">
+      <div class="media-body">
+        <div class="article-metadata row">
+        	<div class="col-md-9">
+        		<a class="mr-2" href="#">{{ blog.author }}</a>
+          		<small class="text-muted">{{ blog.date }}</small>
+        	</div>
+        	<div class="col-md-3 text-right">
+        		<a href="{% url 'blogsUpdate' blog.id %}"><i class="fa fa-pencil px-2"></i></a>
+        		<a href="{% url 'blogsDelete' blog.id %}"><i class="fa fa-trash px-2"></i></a>
+        		<a href="{% url 'addStar' blog.id %}"><i class="fa fa-star px-2"></i></a>
+        	</div>
+          
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-left"> <i class="fa fa-sticky-note"></i> </div>
+
+            <div class="col-md-9 text-left pt-2">
+            	<div class="row">
+            		<h4><a class="article-title" href="{% url 'blogsDetail' blog.id %}">{{ blog }}</a></h4>
+            	</div>
+            	<div class="row">
+            		<p class="article-content">{{ blog.description|truncatechars_html:200 }}</p>
+            	</div>
+                
+            </div>
+        </div>
+      </div>
+	</article>
+	{% endfor %}
+</div>
+{% endblock %}

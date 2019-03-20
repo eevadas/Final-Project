@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container-fluid" style="background: #f1f2f2;">
+        <div class="row py-2" >
+            <div class="col-sm-3 text-left">
+            	<form method="GET" action="{% url 'blogsCreate' %}">
+            		<button class="button" style="background: #6c757d;">
+                    
+                    <div style="float:left;">
+                        <i class="fa fa-pencil"></i>
+                    </div>
+                    <div style="float:right" >
+                        Create
+                    </div>
+                	</button>
+            	</form>
+                
+
+            </div>
+            <div class="col-sm-5">
+                
+            </div>
+            <div class="col-md-4">
+                <div class="search-container">
+                    {% if request.path == '/' or request.path == '/results' %}
+                <form mrthod="GET" action="{% url 'search' %}">
+                    {% elif request.path == '/mypost/' or request.path == '/results1' %}
+                <form mrthod="GET" action="{% url 'search1' %}">
+                    {% elif request.path == '/starred/' or request.path == '/results2' %}
+                <form mrthod="GET" action="{% url 'search2' %}">
+                    {% endif %}
+                    <input type="text" value="{{ request.GET.q }}" placeholder="Search.." name="q">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+                </div>
+            </div>
+        </div>
+        <hr style="padding:0;margin:0;"/>
+    </div>
+    <div class="container-fluid">
+        <div class="row py-5">
+            <div class="col-md-2">
+              <ul class="nav nav-pills flex-column">
+                  <li class="nav-item" id="home">
+                    <a class="nav-link x " href="{% url 'homeBlog' %}">Home</a>
+                  </li>
+                  <li class="nav-item" id="mypost">
+                    <a class="nav-link x" href="{% url 'mypost' %}">My Posts</a>
+                  </li>
+                  <li class="nav-item" id="starred">
+                    <a class="nav-link x" href="{% url 'starred' %}"> Starred </a>
+                  </li>
+                  <li class="nav-item" id="settings">
+                    <a class="nav-link x disabled" href="#">Settings</a>
+                  </li>
+                </ul>
+
+              <hr />
+            </div>
+
+            <script>
+                $(document).ready(function () {
+                    $('.nav li a').click(function(e) {
+                        $('.nav li.active').removeClass('active');
+
+                        var $parent = $(this).parent();
+                        //console.log($parent);
+                        localStorage.setItem('activeTab', $parent.attr('id'));
+                        //e.preventDefault();
+                    });
+                    var activeTab = localStorage.getItem('activeTab');
+                    if(activeTab){
+                        $('#'+activeTab).addClass('active');
+                    }
+                });
+            </script>
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+                <a href=""><div class="row py-2"><div class="col" style="background: #f1f2f2;">
+                    <div style="float:left;">
+                    <i class="fa fa-sticky-note" style="color:#444444;"></i></div>
+                    <div style="float:right;color:#444444;" >
+                    All Posts</div>
+
+                </div></div></a>
+                <a href="{% url 'mypost' %}"><div class="row py-2"><div class="col" style="background: #f1f2f2;">
+                    <div style="float:left;">
+                    <i class="fa fa-sticky-note" style="color:#444444;"></i></div>
+                    <div style="float:right;color:#444444;" >
+                    My Posts</div>
+
+                </div></div></a>
+                <a href="{% url 'starred' %}"><div class="row py-2"><div class="col" style="background: #f1f2f2;">
+                        <div style="float:left;">
+                        <i class="fa fa-star" style="color:#444444;"></i></div>
+                        <div style="float:right; color: #444444" >
+                        Starred</div>
+
+                </div></div></a>
+                <a href=""><div class="row py-2"><div class="col" style="background: #f1f2f2;">
+                        <div style="float:left;">
+                        <i class="fa fa-wrench" style="color:#444444;"></i></div>
+                        <div style="float:right;color:#444444;" >
+                        Settings</div>
+    
+                </div></div></a>-->
+                
+          
+          {% block content %}
+          {% endblock %}
+        </div>
+    </div>
+    
+   {% endblock %}

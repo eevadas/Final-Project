@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+{% if form.errors %}
+<h2>Some Error has occured </h2>
+{% endif %}
+<div class='my-5' >
+	<div class='row '>
+		<div class='col-md-3'></div>
+		<div class='col-md-6 py-4' style="background-color: #f1f2f2;">
+			<div class='row'>
+				<div class='col-md-4'>
+					<img  class="rounded-circle " style="height: 200px;width: 100%;" src=" {{ user.profile.image.url }} ">
+				</div>
+				<div class='col-md-8 pt-3'>
+					<h1 class="mr-2 article-title">{{ user.username }}</h1>
+					<p class="article-metadata text-muted">{{ user.email }}</p>			
+				</div>
+			</div>
+	        
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ userform| crispy }}
+				{{ profileform| crispy }}
+				<div  style="text-align: center;">
+					<input type="submit" name="change" value='APPLY CHANGES'>
+				</div>
+				
+			</form>
+		</div>
+		<div class='col-md-3'></div>
+	</div>
+</div>
+{% endblock %}
+
+
+
+

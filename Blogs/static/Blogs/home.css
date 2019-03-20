@@ -1,0 +1,103 @@
+.search-container {
+    float: right;
+}
+.search-container input{
+    border: none;
+}
+.search-container button {
+    padding-left: 12px;
+    padding-right:12px; 
+    margin-left: 0;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+.search-container button:hover {
+    background: #ccc;
+}
+
+.button {
+  height: 48px;
+	display: block;
+	width: 118px;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+	text-transform: uppercase;
+	border-radius: 2em;
+	border: none;
+}
+
+.button:hover {
+	box-shadow: 0px 0px 4px #b1b1b1;
+	background: #b1adad;
+}
+
+.button:active {
+	box-shadow: 0px 0px 4px #b1b1b1;
+	background: #b1adad;
+}
+a div{
+  border-radius: 10px;
+}
+a div:hover{
+  background-color: #dfdfdf;
+}
+
+
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}

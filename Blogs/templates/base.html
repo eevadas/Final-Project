@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Blogs/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Blogs/inputStyle.css' %}">
+    <title>Hello, world!</title>
+    <style type="text/css">
+        .active .x:link{
+            background: #f1f2f2;
+             
+        }
+        .flex-column .active{
+            list-style-position:inside;
+            border-right: 5px solid #6c757d;
+        }
+        .x{
+            color:#444444;
+        }
+    </style>
+
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+        <div class="container-fluid" style="padding:0">
+        <a href="#" class="navbar-brand"><span style="padding:0;margin:0;font-size:50px">Blog Site</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> 
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active home">
+                <a class="nav-link" href="{% url 'homeBlog' %}" >Home</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                {% endif %}
+                <li class="nav-item">
+                
+                {% if user.is_authenticated %} <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                {% else %} <a class="nav-link" href="{% url 'login' %}">Login</a>
+                {% endif %}
+                
+                </li>
+                
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                    <a href="#" data-toggle="tooltip" title="{{ user.username }} &#13;
+                     {{ user.email }}" ><img  class="rounded-circle " style="height: 40px;width: 40px;margin-right: 16px;" src=" {{ user.profile.image.url }} "></a>
+                    {% else %}
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    {% endif %}
+                </li>
+                
+            </ul>
+        </div>
+        </div>
+    </nav>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();  
+        $('.home a').click(function(e) {
+            localStorage.setItem('activeTab', 'home');
+            }); 
+        });
+    </script>
+    {% block body %}
+    {% endblock %}
+  </body>
+</html>
